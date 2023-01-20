@@ -1,6 +1,6 @@
 package controller.actions
 
-import ui.TranslationKey
+import ui.Translation
 import ui.UI
 
 class DisplayLocationsAction : MenuAction() {
@@ -8,7 +8,7 @@ class DisplayLocationsAction : MenuAction() {
     override val description = null
 
     override fun perform(): Boolean {
-        UI.display(TranslationKey.DISPLAY_LOCATIONS_ACTION)
+        UI.display(Translation.DISPLAY_LOCATIONS_ACTION.getFormattedText())
         return true
     }
 }
