@@ -5,8 +5,8 @@ import exceptions.WeatherAppUIException
 object UI {
 
     var io: IUserIO? = null
-    fun display(msgKey: TranslationKey) = io?.display(msgKey.translate()) ?: failUninitialized()
-    fun ask(msgKey: TranslationKey?) = io?.ask(msgKey?.translate()) ?: failUninitialized()
+    fun display(msg: String) = io?.display(msg) ?: failUninitialized()
+    fun ask(msg: String?): String = io?.ask(msg) ?: failUninitialized()
     private fun failUninitialized(): Nothing =
         throw WeatherAppUIException(
             """Input/Output subsystem was not initialized.

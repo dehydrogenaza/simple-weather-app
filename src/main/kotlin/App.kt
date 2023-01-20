@@ -7,10 +7,10 @@ fun main() {
 }
 
 object App {
-    private val mainMenu = Menu(TranslationKey.MAIN_MENU_PROMPT, EndProgramAction(), DisplayLocationsAction())
     init {
         UI.io = ConsoleIO()
     }
 
-    fun initiateLoop() = mainMenu.loop()
+    fun initiateLoop() = Menu(Translation.MAIN_MENU_PROMPT.getFormattedText(), EndProgramAction(), DisplayLocationsAction())
+        .loop()
 }
