@@ -2,6 +2,9 @@ package ui
 
 import exceptions.WeatherAppUIException
 
+fun String.display() = UI.display(this) //shorthand for UI.display(msg)
+fun String.ask() = UI.ask(this) //shorthand for UI.ask(msg)
+
 object UI {
 
     var io: IUserIO? = null
