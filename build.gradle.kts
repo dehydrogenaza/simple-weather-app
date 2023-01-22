@@ -1,10 +1,15 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
-import org.jetbrains.kotlin.ir.backend.js.compile
+
+companion object Versions {
+    val kotlin = KotlinVersion.KOTLIN_1_8
+    const val jvm = 17
+    const val hibernate = "5.6.14.Final"
+    const val mySqlConnector = "8.0.31"
+}
 
 plugins {
-//    kotlin("jvm") version "1.8.0"
-    with("1.8.0") {
+    with("1.8.0") {//language level
         kotlin("jvm") version this
         id("org.jetbrains.kotlin.plugin.jpa") version this
         id("org.jetbrains.kotlin.plugin.allopen") version this
@@ -14,16 +19,13 @@ plugins {
 group = "com.dehydrogenaza"
 version = "1.0-SNAPSHOT"
 
-val kotlinVersion = KotlinVersion.KOTLIN_1_8
-val jvmVersion = 17
-
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    implementation("org.hibernate:hibernate-core:5.6.14.Final")
-    implementation("mysql:mysql-connector-java:8.0.31")
+    implementation("org.hibernate:hibernate-core:${Versions.hibernate}")
+    implementation("mysql:mysql-connector-java:${Versions.mySqlConnector}")
     testImplementation(kotlin("test"))
 }
 
@@ -32,13 +34,13 @@ tasks.test {
 }
 
 tasks.withType<KotlinCompile> {
-    compilerOptions.apiVersion.set(kotlinVersion)
-    compilerOptions.languageVersion.set(kotlinVersion)
+    compilerOptions.apiVersion.set(Versions.kotlin)
+    compilerOptions.languageVersion.set(Versions.kotlin)
     //compilerOptions.jvmTarget.set(JvmTarget.JVM_17) //set automatically by the toolchain
 }
 
 kotlin {
-    jvmToolchain(jvmVersion)
+    jvmToolchain(Versions.jvm)
 }
 
 allOpen {
