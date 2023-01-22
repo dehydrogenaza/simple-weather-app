@@ -1,17 +1,17 @@
-package model
+package domain
 
 import java.util.UUID
-import javax.persistence.Id
-import javax.persistence.MappedSuperclass
-import javax.persistence.Version
+import javax.persistence.*
 
 @MappedSuperclass
-abstract class JpaPersistable (
-    uuid: UUID,
-    @Version protected val version: Int
-) {
+abstract class JpaPersistable (uuid: UUID) {
     @Id
-    protected val id: String = uuid.toString()
+    @Column(name = "uuid", length = 36)
+    protected val uuid: String = uuid.toString()
+
+    @Version
+    @Column(name = "version")
+    protected val version: Int? = null
 
     //THIS IS NOT SO SIMPLE/OBVIOUS!
     //Read:
@@ -27,8 +27,8 @@ abstract class JpaPersistable (
 
         other as JpaPersistable
 
-        return if (id.isEmpty()) false else id == other.id
+        return if (uuid.isEmpty()) false else uuid == other.uuid
     }
 
-    final override fun hashCode(): Int = id.hashCode()
+    final override fun hashCode(): Int = uuid.hashCode()
 }
