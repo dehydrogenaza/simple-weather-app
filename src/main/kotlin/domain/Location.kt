@@ -18,7 +18,7 @@ class Location(
     @OneToMany(mappedBy = "location",
         cascade = [CascadeType.ALL],
         fetch = FetchType.LAZY)
-    val forecastDates: List<ForecastDate>
+    val forecastDates: MutableList<ForecastDate>
 
 ) : JpaPersistable(UUID.randomUUID()) {
     @OneToOne(cascade = [CascadeType.ALL],

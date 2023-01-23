@@ -17,7 +17,7 @@ class ForecastDate(
     @OneToMany(mappedBy = "date",
         cascade = [CascadeType.ALL],
         fetch = FetchType.LAZY)
-    val forecast: List<Forecast>,
+    val forecast: MutableList<Forecast>,
 
     @ManyToOne
     @JoinColumn(name = "location_id")

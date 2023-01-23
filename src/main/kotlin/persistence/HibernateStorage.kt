@@ -26,12 +26,12 @@ class HibernateStorage : IStorageSolution {
         }.buildSessionFactory()
     }
 
-    override fun add(location: Location): Boolean {
+    override fun add(persistable: JpaPersistable): Boolean {
         sessionFactory.currentSession.use { session: Session? ->
             val transaction = session?.beginTransaction()
                 ?: error("Hibernate: failed to get a Session.")
             try {
-                session.persist(location)
+                session.persist(persistable)
                 transaction.commit()
                 return true
             } catch (e: Exception) {
