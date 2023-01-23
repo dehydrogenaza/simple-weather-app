@@ -1,12 +1,7 @@
 import controller.Menu
 import controller.actions.*
-import domain.Address
-import domain.ForecastDate
-import domain.Location
-import domain.weather.Forecast
-import domain.weather.Precipitation
-import domain.weather.Provider
-import domain.weather.WindDir
+import domain.*
+import domain.weather.*
 import persistence.HibernateStorage
 import persistence.Storage
 import ui.*
@@ -21,6 +16,19 @@ object App {
         UI.io = ConsoleIO()
         Storage.dao = HibernateStorage()
 
+//        addExampleDataToStorage()
+//        readExampleDataFromStorage()
+    }
+
+    fun initiateLoop() = Menu(Translation.MAIN_MENU_PROMPT.getFormattedText(), EndProgramAction(), DisplayLocationsAction())
+        .loop()
+
+    private fun readExampleDataFromStorage() {
+        val testResults = Storage.readAll(Location::class.java)
+        println(testResults)
+    }
+
+    private fun addExampleDataToStorage() {
         val testLocation1 = Location("test1", 20.3, 13.5)
         val testLocation2 = Location("test2", -10.0, 0.0)
             .apply { address = Address("region2", "country2", "area2", null, this) }
@@ -42,7 +50,4 @@ object App {
         Storage.add(testDate1)
         Storage.add(testDate2)
     }
-
-    fun initiateLoop() = Menu(Translation.MAIN_MENU_PROMPT.getFormattedText(), EndProgramAction(), DisplayLocationsAction())
-        .loop()
 }

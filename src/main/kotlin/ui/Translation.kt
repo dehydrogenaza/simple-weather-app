@@ -5,7 +5,9 @@ import java.util.*
 enum class SupportedLocale(val actualValue: Locale) {
     DEFAULT(Locale.US),
     US(Locale.US),
-    POLISH(Locale("pl", "PL"))
+    POLISH(Locale("pl", "PL"));
+
+    override fun toString(): String = actualValue.toString()
 }
 
 enum class Translation(private val propertyKey: String) {

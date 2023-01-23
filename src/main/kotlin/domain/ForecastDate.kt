@@ -5,8 +5,10 @@ import java.time.LocalDateTime
 import java.util.*
 import javax.persistence.*
 
+
+
 @Entity
-@Table(name = "forecast_dates")
+@Table(name = DbTableNames.FORECAST_DATE)
 class ForecastDate(
     @Column(name = "start_date")
     val startDate: LocalDateTime,
@@ -21,6 +23,7 @@ class ForecastDate(
 ) : JpaPersistable(UUID.randomUUID()) {
     @OneToMany(mappedBy = "date",
         cascade = [CascadeType.ALL],
-        fetch = FetchType.LAZY)
+        fetch = FetchType.EAGER) //TODO: temporary solution before DTOs are implemented
+//        fetch = FetchType.LAZY)
     val forecast = mutableListOf<Forecast>()
 }
