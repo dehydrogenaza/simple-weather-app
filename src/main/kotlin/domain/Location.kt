@@ -6,12 +6,23 @@ import javax.persistence.*
 @Entity
 @Table(name = "locations")
 class Location(
+    @Column(name = "description")
     val description: String,
-    val latitude: Double,
-    val longitude: Double,
-    //val forecastDates: List<String>
+
+    @Column(name = "latitude")
+    val latitude: Double?,
+
+    @Column(name = "longitude")
+    val longitude: Double?,
+
+    @OneToMany(mappedBy = "location",
+        cascade = [CascadeType.ALL],
+        fetch = FetchType.LAZY)
+    val forecastDates: List<ForecastDate>
+
 ) : JpaPersistable(UUID.randomUUID()) {
-    @OneToOne(cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
+    @OneToOne(cascade = [CascadeType.ALL],
+        fetch = FetchType.LAZY)
     @JoinColumn(name = "address_id")
     var address: Address? = null
 }

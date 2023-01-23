@@ -6,7 +6,7 @@ import javax.persistence.*
 @MappedSuperclass
 abstract class JpaPersistable (uuid: UUID) {
     @Id
-    @Column(name = "uuid", length = 36)
+    @Column(name = "id", length = 36)
     protected val uuid: String = uuid.toString()
 
     @Version

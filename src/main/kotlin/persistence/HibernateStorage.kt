@@ -1,6 +1,7 @@
 package persistence
 
 import domain.*
+import domain.weather.Forecast
 import org.hibernate.Session
 import org.hibernate.cfg.Configuration
 import java.util.*
@@ -20,6 +21,8 @@ class HibernateStorage : IStorageSolution {
             setProperty("hibernate.connection.password", db_password)
             addAnnotatedClass(Location::class.java)
             addAnnotatedClass(Address::class.java)
+            addAnnotatedClass(ForecastDate::class.java)
+            addAnnotatedClass(Forecast::class.java)
         }.buildSessionFactory()
     }
 
