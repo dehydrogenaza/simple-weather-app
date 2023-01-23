@@ -3,8 +3,9 @@ package domain
 import java.util.*
 import javax.persistence.*
 
+
 @Entity
-@Table(name = "addresses")
+@Table(name = DbTableNames.ADDRESS)
 final class Address(
     @Column(name = "region")
     val region: String?,

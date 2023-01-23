@@ -1,12 +1,13 @@
 package domain.weather
 
+import domain.DbTableNames
 import domain.ForecastDate
 import domain.JpaPersistable
 import java.util.*
 import javax.persistence.*
 
 @Entity
-@Table(name = "forecasts")
+@Table(name = DbTableNames.FORECAST)
 final class Forecast(
     @Column(name = "min_temp")
     val minTemp: Double,

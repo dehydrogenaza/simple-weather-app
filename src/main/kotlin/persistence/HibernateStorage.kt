@@ -15,7 +15,7 @@ class HibernateStorage : IStorageSolution {
         private val db_password: String = dataBundle.getString("db_password")
 
         private val sessionFactory = Configuration().apply {
-            configure()
+            configure("hibernate.cfg.xml")
             setProperty("hibernate.connection.url", db_url)
             setProperty("hibernate.connection.username", db_username)
             setProperty("hibernate.connection.password", db_password)
@@ -38,6 +38,25 @@ class HibernateStorage : IStorageSolution {
                 transaction.rollback()
                 throw e
             }
+        }
+    }
+
+    override fun <T : JpaPersistable> readAll(clazz: Class<T>): List<T> {
+//        val tableName = clazz.getAnnotation(Table::class.java).name
+        val tableName = clazz.simpleName
+
+        sessionFactory.currentSession.use { session: Session? ->
+            val transaction = session?.beginTransaction()
+                ?: error("Hibernate: failed to get a Session.")
+            val rows = try {
+                session.createQuery("from $tableName", clazz)
+                    ?.resultList
+            } catch (e: Exception) {
+                transaction.rollback()
+                throw e
+            }
+
+            return rows?.filterNotNull() ?: emptyList()
         }
     }
 }

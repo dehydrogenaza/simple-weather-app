@@ -5,8 +5,10 @@ import java.time.LocalDateTime
 import java.util.*
 import javax.persistence.*
 
+
+
 @Entity
-@Table(name = "forecast_dates")
+@Table(name = DbTableNames.FORECAST_DATE)
 class ForecastDate(
     @Column(name = "start_date")
     val startDate: LocalDateTime,

@@ -21,6 +21,19 @@ object App {
         UI.io = ConsoleIO()
         Storage.dao = HibernateStorage()
 
+        addExampleDataToStorage()
+        val testResults = Storage.readAll(Location::class.java)
+        println(testResults)
+    }
+
+    fun initiateLoop() = Menu(Translation.MAIN_MENU_PROMPT.getFormattedText(), EndProgramAction(), DisplayLocationsAction())
+        .loop()
+
+    private fun readExampleDataFromStorage() {
+
+    }
+
+    private fun addExampleDataToStorage() {
         val testLocation1 = Location("test1", 20.3, 13.5)
         val testLocation2 = Location("test2", -10.0, 0.0)
             .apply { address = Address("region2", "country2", "area2", null, this) }
@@ -42,7 +55,4 @@ object App {
         Storage.add(testDate1)
         Storage.add(testDate2)
     }
-
-    fun initiateLoop() = Menu(Translation.MAIN_MENU_PROMPT.getFormattedText(), EndProgramAction(), DisplayLocationsAction())
-        .loop()
 }
