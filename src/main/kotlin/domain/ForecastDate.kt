@@ -14,12 +14,13 @@ class ForecastDate(
     @Column(name = "expiry_date")
     val expiryDate: LocalDateTime,
 
-    @OneToMany(mappedBy = "date",
-        cascade = [CascadeType.ALL],
-        fetch = FetchType.LAZY)
-    val forecast: List<Forecast>,
-
     @ManyToOne
     @JoinColumn(name = "location_id")
     val location: Location
-) : JpaPersistable(UUID.randomUUID())
+
+) : JpaPersistable(UUID.randomUUID()) {
+    @OneToMany(mappedBy = "date",
+        cascade = [CascadeType.ALL],
+        fetch = FetchType.LAZY)
+    val forecast = mutableListOf<Forecast>()
+}

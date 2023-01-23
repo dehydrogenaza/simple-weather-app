@@ -1,7 +1,9 @@
 package persistence
 
+import domain.ForecastDate
+import domain.JpaPersistable
 import domain.Location
 
 interface IStorageSolution {
-    fun add(location: Location): Boolean
+    fun add(persistable: JpaPersistable): Boolean
 }
