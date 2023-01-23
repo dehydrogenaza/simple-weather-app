@@ -42,7 +42,6 @@ class HibernateStorage : IStorageSolution {
     }
 
     override fun <T : JpaPersistable> readAll(clazz: Class<T>): List<T> {
-//        val tableName = clazz.getAnnotation(Table::class.java).name
         val tableName = clazz.simpleName
 
         sessionFactory.currentSession.use { session: Session? ->

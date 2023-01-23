@@ -6,6 +6,8 @@ companion object Versions {
     const val jvm = 17
     const val hibernate = "5.6.14.Final"
     const val mySqlConnector = "8.0.31"
+    const val retrofit = "2.9.0"
+    //const val gson = "2.10.1"
 }
 
 plugins {
@@ -26,6 +28,9 @@ repositories {
 dependencies {
     implementation("org.hibernate:hibernate-core:${Versions.hibernate}")
     implementation("mysql:mysql-connector-java:${Versions.mySqlConnector}")
+    //implementation("com.google.code.gson:gson:${Versions.gson}")
+    implementation("com.squareup.retrofit2:retrofit:${Versions.retrofit}")
+    implementation("com.squareup.retrofit2:converter-gson:${Versions.retrofit}")
     testImplementation(kotlin("test"))
 }
 
