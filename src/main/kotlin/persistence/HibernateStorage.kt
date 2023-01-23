@@ -13,20 +13,14 @@ class HibernateStorage : IStorageSolution {
         private val db_username: String = dataBundle.getString("db_username")
         private val db_password: String = dataBundle.getString("db_password")
 
-        private val db_configuration = Configuration()
-
-        init {
-            db_configuration.apply {
-                configure()
-                setProperty("hibernate.connection.url", db_url)
-                setProperty("hibernate.connection.username", db_username)
-                setProperty("hibernate.connection.password", db_password)
-                addAnnotatedClass(Location::class.java)
-                addAnnotatedClass(Address::class.java)
-            }
-        }
-
-        private val sessionFactory = db_configuration.buildSessionFactory()
+        private val sessionFactory = Configuration().apply {
+            configure()
+            setProperty("hibernate.connection.url", db_url)
+            setProperty("hibernate.connection.username", db_username)
+            setProperty("hibernate.connection.password", db_password)
+            addAnnotatedClass(Location::class.java)
+            addAnnotatedClass(Address::class.java)
+        }.buildSessionFactory()
     }
 
     override fun add(location: Location): Boolean {
