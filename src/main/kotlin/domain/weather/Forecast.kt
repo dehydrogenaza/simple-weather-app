@@ -7,7 +7,7 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "forecasts")
-class Forecast(
+final class Forecast(
     @Column(name = "min_temp")
     val minTemp: Double,
 

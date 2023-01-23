@@ -15,14 +15,14 @@ class Location(
     @Column(name = "longitude")
     val longitude: Double?,
 
-    @OneToMany(mappedBy = "location",
-        cascade = [CascadeType.ALL],
-        fetch = FetchType.LAZY)
-    val forecastDates: MutableList<ForecastDate>
-
 ) : JpaPersistable(UUID.randomUUID()) {
     @OneToOne(cascade = [CascadeType.ALL],
         fetch = FetchType.LAZY)
     @JoinColumn(name = "address_id")
     var address: Address? = null
+
+    @OneToMany(mappedBy = "location",
+        cascade = [CascadeType.ALL],
+        fetch = FetchType.LAZY)
+    val forecastDates = mutableListOf<ForecastDate>()
 }
