@@ -3,9 +3,8 @@ import controller.actions.*
 import domain.*
 import domain.weather.*
 import http.service.AccuweatherRetrofitService
+import http.service.AccuweatherServiceGenerator
 import persistence.Storage
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import ui.*
 import java.io.IOException
 import java.time.LocalDateTime
@@ -30,22 +29,18 @@ object App {
         .loop()
 
     private fun accuweatherTest() {
-        val retrofit = Retrofit.Builder()
-            .baseUrl("http://dataservice.accuweather.com/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-        val accuweatherCityService = retrofit.create(AccuweatherRetrofitService::class.java)
+        val accuweatherCityService = AccuweatherServiceGenerator.createService(AccuweatherRetrofitService::class.java)
 
         val apiKeyAccuweather: String = ResourceBundle.getBundle("credentials")
             .getString("api_key_accuweather")
 
         val citiesApiCall = accuweatherCityService.getCities(apiKeyAccuweather, "Jarocin")
-        println("USED URL:")
+        println("REQUEST URL:")
         println(citiesApiCall.request().url())
         try {
             val response = citiesApiCall.execute()
             val citiesFromQuery = response.body()
-            println("CITIES QUERY:")
+            println("CITIES QUERY RESPONSE:")
             println(citiesFromQuery?.joinToString("\n"))
         } catch (e: IOException) {
             println("Failed to get or parse the API response")
