@@ -10,9 +10,12 @@ To configure the App, create a `credentials.properties` file in `src/main/resour
     db_url=jdbc:YOUR_DATABASE_URL
     db_username=YOUR_USERNAME
     db_password=YOUR_PASSWORD
+    api_key_accuweather=YOUR_ACCUWEATHER_API_KEY
 
 Typical value for `YOUR_DATABASE_URL` is `jdbc:mysql://localhost:3306/weather` (make sure you create a DB named `weather`).
 
 Substitute your personal credentials for `YOUR_USERNAME` and `YOUR_PASSWORD`, as configured when you set up MySQL on your computer.
+
+You must register to https://developer.accuweather.com/apis in order to obtain your personal API key.
 
 **Do NOT add this file to Github, as this would leak your password!** It is added to `.gitignore` by default, you should not change it.
