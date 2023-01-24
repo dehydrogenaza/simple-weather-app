@@ -2,10 +2,14 @@ import controller.Menu
 import controller.actions.*
 import domain.*
 import domain.weather.*
-import persistence.HibernateStorage
+import http.service.AccuweatherRetrofitService
 import persistence.Storage
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import ui.*
+import java.io.IOException
 import java.time.LocalDateTime
+import java.util.*
 
 fun main() {
     App.initiateLoop()
@@ -14,7 +18,9 @@ fun main() {
 object App {
     init {
         UI.io = ConsoleIO()
-        Storage.dao = HibernateStorage()
+        //Storage.dao = HibernateStorage()
+
+        accuweatherTest()
 
 //        addExampleDataToStorage()
 //        readExampleDataFromStorage()
@@ -22,6 +28,30 @@ object App {
 
     fun initiateLoop() = Menu(Translation.MAIN_MENU_PROMPT.getFormattedText(), EndProgramAction(), DisplayLocationsAction())
         .loop()
+
+    private fun accuweatherTest() {
+        val retrofit = Retrofit.Builder()
+            .baseUrl("http://dataservice.accuweather.com/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        val accuweatherCityService = retrofit.create(AccuweatherRetrofitService::class.java)
+
+        val apiKeyAccuweather: String = ResourceBundle.getBundle("credentials")
+            .getString("api_key_accuweather")
+
+        val citiesApiCall = accuweatherCityService.getCities(apiKeyAccuweather, "Jarocin")
+        println("USED URL:")
+        println(citiesApiCall.request().url())
+        try {
+            val response = citiesApiCall.execute()
+            val citiesFromQuery = response.body()
+            println("CITIES QUERY:")
+            println(citiesFromQuery?.joinToString("\n"))
+        } catch (e: IOException) {
+            println("Failed to get or parse the API response")
+            throw e
+        }
+    }
 
     private fun readExampleDataFromStorage() {
         val testResults = Storage.readAll(Location::class.java)
