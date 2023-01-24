@@ -3,18 +3,18 @@ package http.service
 import http.response.AccuweatherCityModel
 import retrofit2.Call
 import retrofit2.http.GET
-import retrofit2.http.Path
+import retrofit2.http.Query
 import ui.Translation
 
 interface AccuweatherRetrofitService {
-    @GET("/locations/v1/cities/search?apikey={apiKey}&q={cityQuery}&language={locale}")
+    @GET("/locations/v1/cities/search")
     fun getCities(
-        @Path("apiKey") apiKey: String,
-        @Path("cityQuery") cityQuery: String,
-        @Path("locale") locale: String = localeString()
+        @Query("apikey") apiKey: String,
+        @Query("q") cityQuery: String,
+        @Query("language") locale: String = currentLocaleString()
     ): Call<List<AccuweatherCityModel>>
 
-    private fun localeString(): String = Translation.locale.toString()
+    private fun currentLocaleString(): String = Translation.locale.toString().replace('_', '-').lowercase()
 }
 
 //example URL
