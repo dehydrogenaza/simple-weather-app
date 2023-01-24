@@ -1,6 +1,6 @@
 package http.service
 
-import http.response.AccuweatherCityModel
+import http.response.AccuweatherCityDTO
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -12,7 +12,7 @@ interface AccuweatherRetrofitService {
         @Query("apikey") apiKey: String,
         @Query("q") cityQuery: String,
         @Query("language") locale: String = currentLocaleString()
-    ): Call<List<AccuweatherCityModel>>
+    ): Call<List<AccuweatherCityDTO>>
 
     private fun currentLocaleString(): String = Translation.locale.toString().replace('_', '-').lowercase()
 }
