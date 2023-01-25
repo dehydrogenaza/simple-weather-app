@@ -1,4 +1,4 @@
-package http.response
+package external_api.dtos
 
 import com.google.gson.annotations.SerializedName
 
@@ -18,65 +18,32 @@ class AccuweatherCityDTO(
     private lateinit var geoPosition: AccuweatherGeoPositionDto
 
     override fun toString(): String {
-        return "CITY ($locationKey): $cityName" +
+        return "CITY (AccuWeather) - ($locationKey): $cityName" +
                 "\n\t${region.name}, ${country.name}, ${adminArea.type} ${adminArea.name}" +
                 "\n\tLatitude = ${geoPosition.latitude} Longitude = ${geoPosition.longitude})"
     }
 
-    private class AccuweatherCountryDto(
+    inner class AccuweatherCountryDto(
         @SerializedName("LocalizedName")
         val name: String
     )
 
-    private class AccuweatherRegionDto(
+    inner class AccuweatherRegionDto(
         @SerializedName("LocalizedName")
         val name: String
     )
 
-    private class AccuweatherAdminAreaDto(
+    inner class AccuweatherAdminAreaDto(
         @SerializedName("LocalizedType")
         val type: String,
         @SerializedName("LocalizedName")
         val name: String
     )
 
-    private class AccuweatherGeoPositionDto(
+    inner class AccuweatherGeoPositionDto(
         @SerializedName("Latitude")
         val latitude: Double,
         @SerializedName("Longitude")
         val longitude: Double
     )
 }
-
-//private class AccuweatherCountryDto(
-//    @SerializedName("LocalizedName")
-//    val name: String
-//)
-//
-//private class AccuweatherRegionDto(
-//    @SerializedName("LocalizedName")
-//    val name: String
-//)
-//
-//private class AccuweatherAdminAreaDto(
-//    @SerializedName("LocalizedType")
-//    val type: String,
-//    @SerializedName("LocalizedName")
-//    val name: String
-//)
-//
-//private class AccuweatherGeoPositionDto(
-//    @SerializedName("Latitude")
-//    val latitude: Double,
-//    @SerializedName("Longitude")
-//    val longitude: Double
-//)
-
-//ACTUAL VERSION:
-//locationKey
-//latitude
-//longitude
-//region
-//country
-//adminArea
-//city

@@ -1,9 +1,9 @@
-package http.service
+package external_api.service
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-abstract class ServiceGenerator(baseUrl: String) {
+sealed class ServiceGenerator(baseUrl: String) {
     companion object {
         val gsonConverter: GsonConverterFactory = GsonConverterFactory.create()
     }
@@ -17,3 +17,4 @@ abstract class ServiceGenerator(baseUrl: String) {
 }
 
 object AccuweatherServiceGenerator : ServiceGenerator("http://dataservice.accuweather.com/")
+object OpenweatherServiceGenerator : ServiceGenerator("http://api.openweathermap.org/")
