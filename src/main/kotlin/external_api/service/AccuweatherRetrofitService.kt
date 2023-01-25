@@ -10,12 +10,13 @@ import ui.Translation
 interface AccuweatherRetrofitService : RetrofitService {
     companion object {
         private const val BASE_URL = "http://dataservice.accuweather.com/"
+        const val CREDENTIALS_ID: String = "api_key_accuweather"
+
         private val retrofit: Retrofit = RetrofitService.initRetrofit(BASE_URL)
+
         fun create(): AccuweatherRetrofitService =
             RetrofitService.createService(retrofit, AccuweatherRetrofitService::class.java)
     }
-    override val apiCredentialsId: String
-        get() = "api_key_accuweather"
 
     @GET("/locations/v1/cities/search")
     fun getCities(

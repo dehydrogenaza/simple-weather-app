@@ -9,12 +9,13 @@ import retrofit2.http.Query
 interface OpenweatherRetrofitService : RetrofitService {
     companion object {
         private const val BASE_URL = "http://api.openweathermap.org/"
+        const val CREDENTIALS_ID: String = "api_key_openweather"
+
         private val retrofit: Retrofit = RetrofitService.initRetrofit(BASE_URL)
+
         fun create(): OpenweatherRetrofitService =
             RetrofitService.createService(retrofit, OpenweatherRetrofitService::class.java)
     }
-    override val apiCredentialsId: String
-        get() = "api_key_openweather"
 
     @GET("/geo/1.0/direct")
     fun getCities(
