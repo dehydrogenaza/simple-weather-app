@@ -2,10 +2,7 @@ import controller.Menu
 import controller.actions.*
 import domain.*
 import domain.weather.*
-import external_api.service.AccuweatherRetrofitService
-import external_api.service.AccuweatherServiceGenerator
-import external_api.service.OpenweatherRetrofitService
-import external_api.service.OpenweatherServiceGenerator
+import external_api.service.*
 import persistence.Storage
 import ui.*
 import java.io.IOException
@@ -22,7 +19,7 @@ object App {
         //Storage.dao = HibernateStorage()
 
         accuweatherTest()
-//        openweatherTest()
+        openweatherTest()
 
 //        addExampleDataToStorage()
 //        readExampleDataFromStorage()
@@ -32,8 +29,8 @@ object App {
         .loop()
 
     private fun accuweatherTest() {
-        val accuweatherCityService = AccuweatherServiceGenerator.createService(AccuweatherRetrofitService::class.java)
-
+//        val accuweatherCityService = AccuweatherServiceGenerator.createService(AccuweatherRetrofitService::class.java)
+        val accuweatherCityService = AccuweatherRetrofitService.create()
         val apiKeyAccuweather: String = ResourceBundle.getBundle("credentials")
             .getString("api_key_accuweather")
 
@@ -52,7 +49,8 @@ object App {
     }
 
     private fun openweatherTest() {
-        val openweatherCityService = OpenweatherServiceGenerator.createService(OpenweatherRetrofitService::class.java)
+//        val openweatherCityService = OpenweatherServiceGenerator.createService(OpenweatherRetrofitService::class.java)
+        val openweatherCityService = OpenweatherRetrofitService.create()
 
         val apiKeyOpenweather: String = ResourceBundle.getBundle("credentials")
             .getString("api_key_openweather")
