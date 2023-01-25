@@ -2,10 +2,20 @@ package external_api.service
 
 import external_api.dtos.OpenweatherCityDTO
 import retrofit2.Call
+import retrofit2.Retrofit
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface OpenweatherRetrofitService {
+interface OpenweatherRetrofitService : RetrofitService {
+    companion object {
+        private const val BASE_URL = "http://api.openweathermap.org/"
+        private val retrofit: Retrofit = RetrofitService.initRetrofit(BASE_URL)
+        fun create(): OpenweatherRetrofitService =
+            RetrofitService.createService(retrofit, OpenweatherRetrofitService::class.java)
+    }
+    override val apiCredentialsId: String
+        get() = "api_key_openweather"
+
     @GET("/geo/1.0/direct")
     fun getCities(
         @Query("appid") apiKey: String,
