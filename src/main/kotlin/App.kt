@@ -2,6 +2,7 @@ import controller.Menu
 import controller.actions.*
 import domain.*
 import domain.weather.*
+import external_api.HttpClient
 import external_api.service.*
 import persistence.Storage
 import ui.*
@@ -18,8 +19,9 @@ object App {
         UI.io = ConsoleIO()
         //Storage.dao = HibernateStorage()
 
-        accuweatherTest()
-        openweatherTest()
+//        accuweatherTest()
+//        openweatherTest()
+        httpClientTest()
 
 //        addExampleDataToStorage()
 //        readExampleDataFromStorage()
@@ -28,8 +30,14 @@ object App {
     fun initiateLoop() = Menu(Translation.MAIN_MENU_PROMPT.getFormattedText(), EndProgramAction(), DisplayLocationsAction())
         .loop()
 
+    private fun httpClientTest() {
+        val client = HttpClient(listOf(AccuweatherRetrofitService.create(), OpenweatherRetrofitService.create()))
+
+        val cities = client.queryCities("Jarocin")
+        println(cities.joinToString("\n"))
+    }
+
     private fun accuweatherTest() {
-//        val accuweatherCityService = AccuweatherServiceGenerator.createService(AccuweatherRetrofitService::class.java)
         val accuweatherCityService = AccuweatherRetrofitService.create()
         val apiKeyAccuweather: String = ResourceBundle.getBundle("credentials")
             .getString("api_key_accuweather")
@@ -49,7 +57,6 @@ object App {
     }
 
     private fun openweatherTest() {
-//        val openweatherCityService = OpenweatherServiceGenerator.createService(OpenweatherRetrofitService::class.java)
         val openweatherCityService = OpenweatherRetrofitService.create()
 
         val apiKeyOpenweather: String = ResourceBundle.getBundle("credentials")
