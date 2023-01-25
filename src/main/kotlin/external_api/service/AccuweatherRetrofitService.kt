@@ -1,6 +1,6 @@
-package http.service
+package external_api.service
 
-import http.response.AccuweatherCityDTO
+import external_api.dtos.AccuweatherCityDTO
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query

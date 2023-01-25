@@ -2,8 +2,10 @@ import controller.Menu
 import controller.actions.*
 import domain.*
 import domain.weather.*
-import http.service.AccuweatherRetrofitService
-import http.service.AccuweatherServiceGenerator
+import external_api.service.AccuweatherRetrofitService
+import external_api.service.AccuweatherServiceGenerator
+import external_api.service.OpenweatherRetrofitService
+import external_api.service.OpenweatherServiceGenerator
 import persistence.Storage
 import ui.*
 import java.io.IOException
@@ -20,6 +22,7 @@ object App {
         //Storage.dao = HibernateStorage()
 
         accuweatherTest()
+//        openweatherTest()
 
 //        addExampleDataToStorage()
 //        readExampleDataFromStorage()
@@ -40,7 +43,27 @@ object App {
         try {
             val response = citiesApiCall.execute()
             val citiesFromQuery = response.body()
-            println("CITIES QUERY RESPONSE:")
+            println("CITIES QUERY RESPONSE\n== ACCUWEATHER ==")
+            println(citiesFromQuery?.joinToString("\n"))
+        } catch (e: IOException) {
+            println("Failed to get or parse the API response")
+            throw e
+        }
+    }
+
+    private fun openweatherTest() {
+        val openweatherCityService = OpenweatherServiceGenerator.createService(OpenweatherRetrofitService::class.java)
+
+        val apiKeyOpenweather: String = ResourceBundle.getBundle("credentials")
+            .getString("api_key_openweather")
+
+        val citiesApiCall = openweatherCityService.getCities(apiKeyOpenweather, "Jarocin")
+        println("REQUEST URL:")
+        println(citiesApiCall.request().url())
+        try {
+            val response = citiesApiCall.execute()
+            val citiesFromQuery = response.body()
+            println("CITIES QUERY RESPONSE\n== OPENWEATHER ==")
             println(citiesFromQuery?.joinToString("\n"))
         } catch (e: IOException) {
             println("Failed to get or parse the API response")
