@@ -9,9 +9,9 @@ object Storage : IStorageSolution {
         return dao?.add(persistable) ?: noInit()
     }
 
-    override fun <T : JpaPersistable> readAll(clazz: Class<T>): List<T> {
-        return dao?.readAll(clazz) ?: noInit()
+    override fun <T : JpaPersistable> readAll(ofClass: Class<T>): List<T> {
+        return dao?.readAll(ofClass) ?: noInit()
     }
 
-    private fun noInit(): Nothing = error("Storage was not initialized, set Storage.solution first.")
+    private fun noInit(): Nothing = error("Storage was not initialized, set Storage.dao first.")
 }

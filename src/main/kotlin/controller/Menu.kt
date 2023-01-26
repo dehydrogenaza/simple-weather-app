@@ -2,19 +2,16 @@ package controller
 
 import controller.actions.MenuAction
 import ui.UI
-import ui.display
 
 class Menu(private val prompt: String?, private val defaultAction: MenuAction, vararg actions: MenuAction) {
-    private val menuCommands = actions.associateBy { it.command }
+    private val nonDefaultCommands: Map<String, MenuAction> = actions.associateBy { it.command }
     fun loop() {
         do {
-//            prompt?.let { UI.display(it) }
-            prompt?.let { it.display() }
-        } while (loopIteration())
+            val input = UI.ask(prompt).trim().lowercase()
+        } while (loopIteration(input))
     }
 
-    private fun loopIteration(): Boolean {
-        val input = readln().lowercase()
-        return menuCommands[input]?.perform() ?: defaultAction.perform()
+    private fun loopIteration(input: String): Boolean {
+        return nonDefaultCommands[input]?.perform() ?: defaultAction.perform()
     }
 }

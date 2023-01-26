@@ -1,0 +1,43 @@
+1. Pobierz pogodę dla zapisanych lokalizacji
+	- komunikat jeśli lista jest pusta
+	- wyświetl datę
+	! pobierz z API lub cache'a
+	! zapisz do bazy danych
+	- wyświetl uśrednione
+
+2. Zmień datę (domyślnie: dzisiaj)
+	! walidacja
+
+3. Wyświetl statystyki
+	- podaj przedział (miesiące, lata)
+	- wyświetl listę
+	! z bazy danych
+
+4. Zarządzaj lokalizacjami
+	- wyświetl listę lokalizacji
+	! odczyt z bazy
+	2.1. Dodaj lokalizację
+		- na podst. nazwy miasta / wyszukiwarki
+		- na podst. długości / szerokości geograficznej
+		! walidacja danych
+		! zapis w bazie
+	2.2. Ukryj/pokaż lokalizacje (nie usuwa z bazy, ale nie wyświetla)
+	2.3. Usuń po nazwie / ID
+
+5. Zapisz do pliku
+	- podaj nazwę pliku
+
+6. Opcje
+	6.1. Odtwórz bazę danych z pliku
+	6.2. Usuń bazę danych
+	6.3. Ustaw domyślną datę
+	6.4. Wybierz API pogodowe
+	6.5. Zmień UI
+	6.6. Zmień język
+
+7. Pomoc
+    - wyświetl listę komend
+
+8. Zakończ
+
+DEFAULT: nieznana komenda

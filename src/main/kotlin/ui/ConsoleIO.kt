@@ -6,7 +6,7 @@ class ConsoleIO: IUserIO {
     }
 
     override fun ask(msg: String?): String {
-        println(msg)
+        print(msg)
         return readln()
     }
 }

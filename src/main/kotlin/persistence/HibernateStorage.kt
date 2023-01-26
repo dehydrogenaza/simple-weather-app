@@ -8,7 +8,6 @@ import java.util.*
 
 class HibernateStorage : IStorageSolution {
     companion object Config {
-
         //TODO: Fix this to use Credentials()
         private val dataBundle = ResourceBundle.getBundle("credentials")
         private val db_url: String = dataBundle.getString("db_url")
@@ -42,14 +41,14 @@ class HibernateStorage : IStorageSolution {
         }
     }
 
-    override fun <T : JpaPersistable> readAll(clazz: Class<T>): List<T> {
-        val tableName = clazz.simpleName
+    override fun <T : JpaPersistable> readAll(ofClass: Class<T>): List<T> {
+        val tableName = ofClass.simpleName
 
         sessionFactory.currentSession.use { session: Session? ->
             val transaction = session?.beginTransaction()
                 ?: error("Hibernate: failed to get a Session.")
             val rows = try {
-                session.createQuery("from $tableName", clazz)
+                session.createQuery("from $tableName", ofClass)
                     ?.resultList
             } catch (e: Exception) {
                 transaction.rollback()
