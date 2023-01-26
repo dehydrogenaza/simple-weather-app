@@ -1,3 +1,4 @@
+import authentication.Credentials
 import controller.Menu
 import controller.actions.*
 import domain.*
@@ -31,7 +32,9 @@ object App {
         .loop()
 
     private fun httpClientTest() {
-        val client = HttpClient(listOf(AccuweatherRetrofitService.create(), OpenweatherRetrofitService.create()))
+        val client = HttpClient(
+            listOf(AccuweatherRetrofitService.create(), OpenweatherRetrofitService.create()),
+            Credentials())
 
         val cities = client.queryCities("Jarocin")
         println(cities.joinToString("\n"))
