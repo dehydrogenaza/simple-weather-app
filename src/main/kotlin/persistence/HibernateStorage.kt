@@ -9,6 +9,7 @@ import java.util.*
 class HibernateStorage : IStorageSolution {
     companion object Config {
 
+        //TODO: Fix this to use Credentials()
         private val dataBundle = ResourceBundle.getBundle("credentials")
         private val db_url: String = dataBundle.getString("db_url")
         private val db_username: String = dataBundle.getString("db_username")

@@ -1,15 +1,15 @@
 package external_api
 
+import authentication.ICredentialsSource
+import exceptions.WeatherAppAuthenticationException
 import external_api.service.*
-import java.util.ResourceBundle
 
-class HttpClient(services: List<RetrofitService>) {
-
+class HttpClient(services: List<RetrofitService>, credentials: ICredentialsSource) {
     private val servicesWithKeys: Map<RetrofitService, String> = services.associateWith { service ->
-        ResourceBundle.getBundle("credentials").getString(when (service) {
+        credentials.data[when (service) {
             is AccuweatherRetrofitService -> AccuweatherRetrofitService.CREDENTIALS_ID
             is OpenweatherRetrofitService -> OpenweatherRetrofitService.CREDENTIALS_ID
-        })
+        }] ?: failAuthentication(service)
     }
 
     fun queryCities(query: String) =
@@ -20,4 +20,8 @@ class HttpClient(services: List<RetrofitService>) {
             }.execute().body() ?: emptyList()
         }
 
+    private fun failAuthentication(service: RetrofitService): Nothing =
+        throw WeatherAppAuthenticationException(
+            "Unable to retrieve the API key for service: " + service::class.simpleName
+        )
 }
