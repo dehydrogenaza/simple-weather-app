@@ -12,7 +12,10 @@ import java.time.LocalDateTime
 import java.util.*
 
 fun main() {
-    App.initiateLoop()
+    val app = App
+
+    Translation.APP_START_MSG.getFormattedText().display()
+    app.initiateLoop()
 }
 
 object App {
@@ -22,19 +25,26 @@ object App {
 
 //        accuweatherTest()
 //        openweatherTest()
-        httpClientTest()
+        //httpClientTest()
 
 //        addExampleDataToStorage()
 //        readExampleDataFromStorage()
     }
 
-    fun initiateLoop() = Menu(Translation.MAIN_MENU_PROMPT.getFormattedText(), EndProgramAction(), DisplayLocationsAction())
-        .loop()
+    fun initiateLoop() = Menu(
+        Translation.MAIN_MENU_PROMPT.getFormattedText(),
+        InvalidCommandAction(), //default
+        EmptyCommandAction(),
+        ManageLocationsAction(),
+        DisplayLocationsAction(),
+        EndProgramAction()
+    ).loop()
 
     private fun httpClientTest() {
         val client = HttpClient(
             listOf(AccuweatherRetrofitService.create(), OpenweatherRetrofitService.create()),
-            Credentials())
+            Credentials()
+        )
 
         val cities = client.queryCities("Jarocin")
         println(cities.joinToString("\n"))
@@ -92,13 +102,59 @@ object App {
             .apply { address = Address("someRegion3", "someCountry3", "someArea3", "someCity3", this) }
 
         val testDate1 = ForecastDate(LocalDateTime.now(), LocalDateTime.now(), testLocation1)
-        val testForecast1provA = Forecast(3.0, 7.0, 6.0, 1000.0, 5.0, 15.0, WindDir.W, 40, 15, Precipitation.RAIN, 5.0, Provider.ACCUWEATHER, testDate1)
-        val testForecast1provB = Forecast(5.0, 8.0, 6.0, 1005.0, 5.5, 12.0, WindDir.NW, 45, 5, Precipitation.MIXED, 1.0, Provider.OPENWEATHER, testDate1)
+        val testForecast1provA = Forecast(
+            3.0,
+            7.0,
+            6.0,
+            1000.0,
+            5.0,
+            15.0,
+            WindDir.W,
+            40,
+            15,
+            Precipitation.RAIN,
+            5.0,
+            Provider.ACCUWEATHER,
+            testDate1
+        )
+        val testForecast1provB = Forecast(
+            5.0,
+            8.0,
+            6.0,
+            1005.0,
+            5.5,
+            12.0,
+            WindDir.NW,
+            45,
+            5,
+            Precipitation.MIXED,
+            1.0,
+            Provider.OPENWEATHER,
+            testDate1
+        )
         testDate1.forecast.add(testForecast1provA)
         testDate1.forecast.add(testForecast1provB)
 
         val testDate2 = ForecastDate(LocalDateTime.now().minusDays(1), LocalDateTime.now().plusDays(3), testLocation1)
-            .apply { forecast.add(Forecast(-20.0, -17.0, -30.0, 990.0, 40.2, 85.0, WindDir.S, 60, 75, Precipitation.SNOW, 50.0, Provider.WEATHERSTACK, this)) }
+            .apply {
+                forecast.add(
+                    Forecast(
+                        -20.0,
+                        -17.0,
+                        -30.0,
+                        990.0,
+                        40.2,
+                        85.0,
+                        WindDir.S,
+                        60,
+                        75,
+                        Precipitation.SNOW,
+                        50.0,
+                        Provider.WEATHERSTACK,
+                        this
+                    )
+                )
+            }
 
         Storage.add(testLocation1)
         Storage.add(testLocation2)
