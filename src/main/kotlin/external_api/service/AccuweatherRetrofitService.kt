@@ -5,7 +5,7 @@ import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.http.GET
 import retrofit2.http.Query
-import ui.Translation
+import ui.Txt
 
 interface AccuweatherRetrofitService : RetrofitService {
     companion object {
@@ -25,7 +25,7 @@ interface AccuweatherRetrofitService : RetrofitService {
         @Query("language") locale: String = currentLocaleString()
     ): Call<List<AccuweatherCityDTO>>
 
-    private fun currentLocaleString(): String = Translation.locale.toString().replace('_', '-').lowercase()
+    private fun currentLocaleString(): String = Txt.locale.toString().replace('_', '-').lowercase()
 }
 
 //example URL

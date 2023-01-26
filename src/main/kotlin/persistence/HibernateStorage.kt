@@ -1,18 +1,25 @@
 package persistence
 
+import authentication.Credentials
+import authentication.ICredentialsSource
 import domain.*
 import domain.weather.Forecast
+import exceptions.WeatherAppAuthenticationException
 import org.hibernate.Session
 import org.hibernate.cfg.Configuration
 import java.util.*
 
 class HibernateStorage : IStorageSolution {
     companion object Config {
-        //TODO: Fix this to use Credentials()
-        private val dataBundle = ResourceBundle.getBundle("credentials")
-        private val db_url: String = dataBundle.getString("db_url")
-        private val db_username: String = dataBundle.getString("db_username")
-        private val db_password: String = dataBundle.getString("db_password")
+        private val credentials = Credentials().data
+        private val db_url: String? = credentials["db_url"]
+        private val db_username: String? = credentials["db_username"]
+        private val db_password: String? = credentials["db_password"]
+        init {
+            check(db_url != null && db_username != null && db_password != null) {
+                "Could not obtain credentials from $credentials"
+            }
+        }
 
         private val sessionFactory = Configuration().apply {
             configure("hibernate.cfg.xml")
@@ -24,6 +31,7 @@ class HibernateStorage : IStorageSolution {
             addAnnotatedClass(ForecastDate::class.java)
             addAnnotatedClass(Forecast::class.java)
         }.buildSessionFactory()
+
     }
 
     override fun add(persistable: JpaPersistable): Boolean {
@@ -58,4 +66,9 @@ class HibernateStorage : IStorageSolution {
             return rows?.filterNotNull() ?: emptyList()
         }
     }
+
+    private fun failGettingCredentials(key: String): Nothing =
+        throw WeatherAppAuthenticationException(
+            "Could not obtain credentials for key: $key"
+        )
 }

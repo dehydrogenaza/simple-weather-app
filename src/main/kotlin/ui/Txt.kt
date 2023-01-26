@@ -10,7 +10,7 @@ enum class SupportedLocale(val actualValue: Locale) {
     override fun toString(): String = actualValue.toString()
 }
 
-enum class Translation(private val propertyKey: String) {
+enum class Txt(private val propertyKey: String) {
     TEST_PROP_SIMPLE("test_prop_simple"),
     TEST_PROP_FORMATTED("test_prop_formatted"),
     TEST_PROP_NONEXISTENT("test_prop_nonexistent"),
@@ -19,10 +19,10 @@ enum class Translation(private val propertyKey: String) {
     TEST_PROP_EMPTY("test_prop_empty"),
     MAIN_MENU_PROMPT("main_menu_prompt"),
     END_PROGRAM_ACTION("end_program"),
-    DISPLAY_LOCATIONS_ACTION("display_locations"),
     INVALID_COMMAND_ACTION("invalid_command"),
     LOCATION_MENU_START_MSG("location_menu_start_msg"),
     LOCATION_MENU_BACK("app_start_msg"),
+    LOCATION_MANAGER_MSG("location_manager_msg"),
 
     ;
 

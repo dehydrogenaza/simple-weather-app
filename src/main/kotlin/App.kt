@@ -5,6 +5,7 @@ import domain.*
 import domain.weather.*
 import external_api.HttpClient
 import external_api.service.*
+import persistence.HibernateStorage
 import persistence.Storage
 import ui.*
 import java.io.IOException
@@ -14,29 +15,28 @@ import java.util.*
 fun main() {
     val app = App
 
-    Translation.APP_START_MSG.getFormattedText().display()
+    Txt.APP_START_MSG.getFormattedText().display()
     app.initiateLoop()
 }
 
 object App {
     init {
         UI.io = ConsoleIO()
-        //Storage.dao = HibernateStorage()
+        Storage.dao = HibernateStorage()
 
 //        accuweatherTest()
 //        openweatherTest()
         //httpClientTest()
 
-//        addExampleDataToStorage()
+        addExampleDataToStorage()
 //        readExampleDataFromStorage()
     }
 
     fun initiateLoop() = Menu(
-        Translation.MAIN_MENU_PROMPT.getFormattedText(),
+        Txt.MAIN_MENU_PROMPT.getFormattedText(),
         InvalidCommandAction(), //default
         EmptyCommandAction(),
         ManageLocationsAction(),
-        DisplayLocationsAction(),
         EndProgramAction()
     ).loop()
 
