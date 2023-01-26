@@ -22,8 +22,9 @@ class ForecastDate(
 
 ) : JpaPersistable(UUID.randomUUID()) {
     @OneToMany(mappedBy = "date",
-        cascade = [CascadeType.ALL],
-        fetch = FetchType.EAGER) //TODO: temporary solution before DTOs are implemented
+        cascade = [CascadeType.ALL]
+    )
+        //fetch = FetchType.EAGER) //TODO: temporary solution before DTOs are implemented
 //        fetch = FetchType.LAZY)
     val forecast = mutableListOf<Forecast>()
 }

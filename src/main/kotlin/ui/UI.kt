@@ -1,8 +1,11 @@
 package ui
 
+import domain.Location
 import exceptions.WeatherAppUIException
 
 fun String.display() = UI.display(this) //shorthand for UI.display(msg)
+fun Txt.display(vararg formatArgs: Any) = UI.display(this.getFormattedText(*formatArgs))
+fun List<*>.display() = UI.display(this.joinToString("\n"))
 fun String.ask() = UI.ask(this) //shorthand for UI.ask(msg)
 
 object UI {

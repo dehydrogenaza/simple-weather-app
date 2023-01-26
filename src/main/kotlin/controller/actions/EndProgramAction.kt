@@ -1,6 +1,6 @@
 package controller.actions
 
-import ui.Translation
+import ui.Txt
 import ui.display
 
 class EndProgramAction : MenuAction() {
@@ -8,7 +8,7 @@ class EndProgramAction : MenuAction() {
     //override val description = null
 
     override fun perform(): Boolean {
-        Translation.END_PROGRAM_ACTION.getFormattedText().display()
+        Txt.END_PROGRAM_ACTION.display()
         return false
     }
 }

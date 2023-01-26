@@ -2,20 +2,28 @@ package controller.actions
 
 import controller.Menu
 import controller.actions.submenu.location.BackCommandAction
-import ui.Translation
+import domain.Location
+import persistence.Storage
+import ui.Txt
 import ui.display
 
 class ManageLocationsAction : MenuAction() {
-    override val command: String = "manage"
+    override val command: String = "list"
 
     override fun perform(): Boolean {
-        Translation.LOCATION_MENU_START_MSG.getFormattedText().display()
+        Txt.LOCATION_MENU_START_MSG.display()
+
+        Storage.readAll(Location::class.java).display()
+
+        Txt.LOCATION_MANAGER_MSG.display()
+
         Menu(
-            Translation.MAIN_MENU_PROMPT.getFormattedText(),
-            InvalidCommandAction(),
+            Txt.MAIN_MENU_PROMPT.getFormattedText(),
+            InvalidCommandAction(), //default
             EmptyCommandAction(),
             BackCommandAction()
         ).loop()
+
         return true
     }
 }

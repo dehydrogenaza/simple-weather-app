@@ -1,6 +1,6 @@
 package controller.actions
 
-import ui.Translation
+import ui.Txt
 import ui.display
 
 class InvalidCommandAction : MenuAction() {
@@ -8,7 +8,7 @@ class InvalidCommandAction : MenuAction() {
     //override val description: String?
 
     override fun perform(): Boolean {
-        Translation.INVALID_COMMAND_ACTION.getFormattedText().display()
+        Txt.INVALID_COMMAND_ACTION.display()
         return true
     }
 }
