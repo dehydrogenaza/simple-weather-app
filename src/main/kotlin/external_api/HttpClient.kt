@@ -12,6 +12,8 @@ class HttpClient(services: List<RetrofitService>, credentials: ICredentialsSourc
         }] ?: failAuthentication(service)
     }
 
+    //TODO: Switch to ASYNC
+    //TODO: Exceptions handling for Network Errors (on .execute())
     fun queryCities(query: String) =
         servicesWithKeys.flatMap {
             when (val service: RetrofitService = it.key) {

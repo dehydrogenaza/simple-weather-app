@@ -23,6 +23,7 @@ enum class Txt(private val propertyKey: String) {
     LOCATION_MENU_START_MSG("location_menu_start_msg"),
     LOCATION_MENU_BACK("app_start_msg"),
     LOCATION_MANAGER_MSG("location_manager_msg"),
+    LOCATION_ADDED_MSG("add_location"),
 
     ;
 

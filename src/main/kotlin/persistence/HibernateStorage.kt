@@ -67,6 +67,10 @@ class HibernateStorage : IStorageSolution {
         }
     }
 
+    override fun close() {
+        sessionFactory.close()
+    }
+
     private fun failGettingCredentials(key: String): Nothing =
         throw WeatherAppAuthenticationException(
             "Could not obtain credentials for key: $key"

@@ -4,10 +4,10 @@ import controller.actions.MenuAction
 import ui.Txt
 import ui.display
 
-class BackCommandAction : MenuAction() {
+class BackFromLocationsAction : MenuAction() {
     override val command: Regex = """/back|/b""".toRegex()
 
-    override fun perform(): Boolean {
+    override fun perform(input: String): Boolean {
         Txt.LOCATION_MENU_BACK.display()
         return false
     }
