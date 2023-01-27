@@ -2,13 +2,12 @@ package controller.actions
 
 import controller.Menu
 import controller.actions.submenu.location.*
-import domain.Location
-import persistence.Storage
 import ui.Txt
 import ui.display
 
 class ManageLocationsAction : MenuAction() {
-    override val command: Regex = """/list|/locations|/l""".toRegex()
+    override val command: Regex = arrayOf("/l", "/list", "/locations").toCommand()
+//    override val command: Regex = """/list|/locations|/l""".toRegex()
 
     override fun perform(input: String): Boolean {
         Txt.LOCATION_MENU_START_MSG.display()
