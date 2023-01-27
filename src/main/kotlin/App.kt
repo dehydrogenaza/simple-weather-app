@@ -22,7 +22,7 @@ fun main() {
 object App {
     init {
         UI.io = ConsoleIO()
-        Storage.dao = HibernateStorage()
+        Storage.dao = HibernateStorage() //TODO: Proper error handling, retry + file fallback
 
 //        accuweatherTest()
 //        openweatherTest()
@@ -34,7 +34,7 @@ object App {
 
     fun initiateLoop() = Menu(
         Txt.MAIN_MENU_PROMPT.getFormattedText(),
-        InvalidCommandAction(), //default
+        defaultAction = InvalidCommandAction(),
         EmptyCommandAction(),
         ManageLocationsAction(),
         EndProgramAction()

@@ -1,14 +1,14 @@
 package controller.actions
 
 import controller.Menu
-import controller.actions.submenu.location.BackCommandAction
+import controller.actions.submenu.location.*
 import domain.Location
 import persistence.Storage
 import ui.Txt
 import ui.display
 
 class ManageLocationsAction : MenuAction() {
-    override val command: String = "list"
+    override val command: Regex = """/list|/locations|/l""".toRegex()
 
     override fun perform(): Boolean {
         Txt.LOCATION_MENU_START_MSG.display()
@@ -19,7 +19,7 @@ class ManageLocationsAction : MenuAction() {
 
         Menu(
             Txt.MAIN_MENU_PROMPT.getFormattedText(),
-            InvalidCommandAction(), //default
+            defaultAction = AddLocationAction(),
             EmptyCommandAction(),
             BackCommandAction()
         ).loop()

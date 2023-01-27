@@ -5,7 +5,7 @@ import ui.Txt
 import ui.display
 
 class BackCommandAction : MenuAction() {
-    override val command: String = "back"
+    override val command: Regex = """/back|/b""".toRegex()
 
     override fun perform(): Boolean {
         Txt.LOCATION_MENU_BACK.display()

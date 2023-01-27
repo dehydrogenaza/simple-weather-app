@@ -4,7 +4,7 @@ import ui.Txt
 import ui.display
 
 class InvalidCommandAction : MenuAction() {
-    override val command: String = ""
+    override val command: Regex? = null
     //override val description: String?
 
     override fun perform(): Boolean {

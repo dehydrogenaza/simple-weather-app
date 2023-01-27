@@ -1,7 +1,7 @@
 package controller.actions
 
 class EmptyCommandAction : MenuAction() {
-    override val command: String = ""
+    override val command: Regex = """\s*""".toRegex()
 
     override fun perform(): Boolean {
         return true

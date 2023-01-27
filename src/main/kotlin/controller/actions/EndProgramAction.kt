@@ -4,7 +4,7 @@ import ui.Txt
 import ui.display
 
 class EndProgramAction : MenuAction() {
-    override val command = "end"
+    override val command: Regex = """/exit|/e""".toRegex()
     //override val description = null
 
     override fun perform(): Boolean {
