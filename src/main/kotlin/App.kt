@@ -22,13 +22,13 @@ fun main() {
 object App {
     init {
         UI.io = ConsoleIO()
-        Storage.dao = HibernateStorage() //TODO: Proper error handling, retry + file fallback
+        //Storage.dao = HibernateStorage() //TODO: Proper error handling, retry + file fallback
 
 //        accuweatherTest()
 //        openweatherTest()
         //httpClientTest()
 
-        addExampleDataToStorage()
+        //addExampleDataToStorage()
 //        readExampleDataFromStorage()
     }
 
@@ -36,6 +36,7 @@ object App {
         Txt.MAIN_MENU_PROMPT.getFormattedText(),
         defaultAction = InvalidCommandAction(),
         EmptyCommandAction(),
+        AddLocationAction(),
         ManageLocationsAction(),
         EndProgramAction()
     ).loop()

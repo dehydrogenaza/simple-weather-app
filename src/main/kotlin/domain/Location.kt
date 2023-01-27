@@ -1,5 +1,6 @@
 package domain
 
+import ui.IDisplayableList
 import java.util.UUID
 import javax.persistence.*
 
@@ -15,7 +16,9 @@ class Location(
     @Column(name = "longitude")
     val longitude: Double?,
 
-) : JpaPersistable(UUID.randomUUID()) {
+) : JpaPersistable(UUID.randomUUID()), IDisplayableList {
+    @Column(name = "hidden")
+    var hidden: Boolean = false
 
     @OneToOne(cascade = [CascadeType.ALL],
         fetch = FetchType.EAGER) //TODO: temporary solution before DTOs are implemented
@@ -31,4 +34,6 @@ class Location(
     override fun toString(): String {
         return "Location(description='$description', latitude=$latitude, longitude=$longitude, address=$address, forecastDates=$forecastDates)"
     }
+
+    override fun isHidden(): Boolean = hidden
 }

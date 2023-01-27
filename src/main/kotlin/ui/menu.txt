@@ -16,13 +16,13 @@
 4. Zarządzaj lokalizacjami
 	- wyświetl listę lokalizacji
 	! odczyt z bazy
-	2.1. Dodaj lokalizację
+	4.1. Dodaj lokalizację = dowolna komenda
 		- na podst. nazwy miasta / wyszukiwarki
 		- na podst. długości / szerokości geograficznej
 		! walidacja danych
 		! zapis w bazie
-	2.2. Ukryj/pokaż lokalizacje (nie usuwa z bazy, ale nie wyświetla)
-	2.3. Usuń po nazwie / ID
+	4.2. Ukryj/pokaż lokalizacje (nie usuwa z bazy, ale nie wyświetla)
+	4.3. Usuń po nazwie / ID
 
 5. Zapisz do pliku
 	- podaj nazwę pliku

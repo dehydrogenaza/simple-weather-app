@@ -13,5 +13,9 @@ object Storage : IStorageSolution {
         return dao?.readAll(ofClass) ?: noInit()
     }
 
+    override fun close() {
+        dao?.close()
+    }
+
     private fun noInit(): Nothing = error("Storage was not initialized, set Storage.dao first.")
 }

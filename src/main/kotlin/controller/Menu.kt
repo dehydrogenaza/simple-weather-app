@@ -13,9 +13,8 @@ class Menu(private val prompt: String?, private val defaultAction: MenuAction, v
 
     private fun loopIteration(input: String): Boolean {
         nonDefaultCommands.forEach { (action, command) ->
-            command?.let { if (input.matches(it)) return action.perform() }
+            command?.let { if (input.matches(it)) return action.perform(input) }
         }
-        return defaultAction.perform()
-        //return nonDefaultCommands[input]?.perform() ?: defaultAction.perform()
+        return defaultAction.perform(input)
     }
 }
