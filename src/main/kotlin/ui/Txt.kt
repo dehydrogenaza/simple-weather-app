@@ -14,16 +14,21 @@ enum class Txt(private val propertyKey: String) {
     TEST_PROP_SIMPLE("test_prop_simple"),
     TEST_PROP_FORMATTED("test_prop_formatted"),
     TEST_PROP_NONEXISTENT("test_prop_nonexistent"),
+    TEST_PROP_EMPTY("test_prop_empty"),
 
     APP_START_MSG("app_start_msg"),
-    TEST_PROP_EMPTY("test_prop_empty"),
     MAIN_MENU_PROMPT("main_menu_prompt"),
-    END_PROGRAM_ACTION("end_program"),
     INVALID_COMMAND_ACTION("invalid_command"),
-    LOCATION_MENU_START_MSG("location_menu_start_msg"),
-    LOCATION_MENU_BACK("app_start_msg"),
-    LOCATION_MANAGER_MSG("location_manager_msg"),
+    NO_ARGUMENT_ERROR("no_argument_error"),
+    INVALID_ID_ERROR("invalid_id_error"),
+
+    ADD_COMMAND_PROPER_USAGE_INSTRUCTION("add_command_proper"),
+    ADD_LOCATION_NOT_FOUND("location_not_found"),
+    ADD_MULTIPLE_LOCATIONS_FOUND("multiple_locations_found"),
+
+    END_PROGRAM_ACTION("end_program"),
     LOCATION_ADDED_MSG("add_location"),
+    DISPLAY_LOCATIONS_MSG("display_locations"),
 
     ;
 

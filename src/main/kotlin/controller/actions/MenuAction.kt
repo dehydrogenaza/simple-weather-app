@@ -2,7 +2,7 @@ package controller.actions
 
 import kotlin.text.StringBuilder
 
-//private const val ARGUMENT_COMMON_REGEX_STRING = " +\\S.*"
+const val ARGUMENT_COMMON_REGEX_STRING = " +\\S.*"
 private const val AFTER_PARAMETER_COMMON_REGEX_STRING = "( .+)*"
 
 abstract class MenuAction {

@@ -7,7 +7,7 @@ class AccuweatherCityDTO(
     private val locationKey: String,
     @SerializedName("LocalizedName")
     private val cityName: String
-) {
+) : ApiDTO {
     @SerializedName("Region")
     private lateinit var region: AccuweatherRegionDto
     @SerializedName("Country")
