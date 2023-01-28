@@ -1,9 +1,13 @@
 package controller.actions
 
 import authentication.Credentials
+import domain.Address
+import domain.Location
 import external_api.HttpClientManager
+import external_api.dtos.AccuweatherCityDTO
 import external_api.dtos.ApiDTO
 import external_api.service.AccuweatherRetrofitService
+import persistence.Storage
 import ui.Txt
 import ui.UI
 import ui.display
@@ -30,16 +34,32 @@ class AddLocationAction : MenuAction() {
             println("${idx + 1}.\n$city")
         }
 
-        val city: ApiDTO? = when (cities.size) {
+        val city: ApiDTO = when (cities.size) {
             0 -> {
                 Txt.ADD_LOCATION_NOT_FOUND.display(query)
-                null
+                return true
             }
             1 -> cities.first()
             else -> multipleChoice(cities)
         }
 
-        Txt.LOCATION_ADDED_MSG.display(city.toString())
+        city as AccuweatherCityDTO
+        val location: Location = city.let { c ->
+            Location(query, c.geoPosition.latitude, c.geoPosition.longitude)
+                .apply { address = Address(
+                    c.region.name,
+                    c.country.name,
+                    "${c.adminArea.type} ${c.adminArea.name}",
+                    c.cityName,
+                    this) }
+        }
+        Storage.add(location)
+
+        // TODO: check if it exists first
+        // TODO: add location_key
+        // TODO: split to functions
+
+        Txt.LOCATION_ADDED_MSG.display(location.toString())
 
         return true
     }
