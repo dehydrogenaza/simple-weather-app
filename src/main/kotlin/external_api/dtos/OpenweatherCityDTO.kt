@@ -13,7 +13,7 @@ class OpenweatherCityDTO(
     private val country: String,
     @SerializedName("state")
     private val state: String?
-) {
+) : ApiDTO {
     override fun toString(): String {
         return "CITY (OpenWeather) - $cityName" +
                 "\n\t$country, ${state ?: ""}" +

@@ -22,7 +22,7 @@ fun main() {
 object App {
     init {
         UI.io = ConsoleIO()
-        //Storage.dao = HibernateStorage() //TODO: Proper error handling, retry + file fallback
+        Storage.dao = HibernateStorage() //TODO: Proper error handling, retry + file fallback
 
 //        accuweatherTest()
 //        openweatherTest()
@@ -46,7 +46,7 @@ object App {
 
     private fun httpClientTest() {
         val client = HttpClient(
-            listOf(AccuweatherRetrofitService.create(), OpenweatherRetrofitService.create()),
+            setOf(AccuweatherRetrofitService.create(), OpenweatherRetrofitService.create()),
             Credentials()
         )
 
