@@ -20,10 +20,8 @@ enum class Txt(private val propertyKey: String) {
     MAIN_MENU_PROMPT("main_menu_prompt"),
     END_PROGRAM_ACTION("end_program"),
     INVALID_COMMAND_ACTION("invalid_command"),
-    LOCATION_MENU_START_MSG("location_menu_start_msg"),
-    LOCATION_MENU_BACK("app_start_msg"),
-    LOCATION_MANAGER_MSG("location_manager_msg"),
     LOCATION_ADDED_MSG("add_location"),
+    DISPLAY_LOCATIONS_MSG("display_locations"),
 
     ;
 

@@ -36,8 +36,11 @@ object App {
         Txt.MAIN_MENU_PROMPT.getFormattedText(),
         defaultAction = InvalidCommandAction(),
         EmptyCommandAction(),
+        ListSavedLocationsAction(),
         AddLocationAction(),
-        ManageLocationsAction(),
+        DeleteLocationsAction(),
+        HideLocationsAction(),
+        RevealLocationsAction(),
         EndProgramAction()
     ).loop()
 
