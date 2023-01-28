@@ -4,18 +4,18 @@ import com.google.gson.annotations.SerializedName
 
 class AccuweatherCityDTO(
     @SerializedName("Key")
-    private val locationKey: String,
+    val locationKey: String,
     @SerializedName("LocalizedName")
-    private val cityName: String
+    val cityName: String
 ) : ApiDTO {
     @SerializedName("Region")
-    private lateinit var region: AccuweatherRegionDto
+    lateinit var region: AccuweatherRegionDto
     @SerializedName("Country")
-    private lateinit var country: AccuweatherCountryDto
+    lateinit var country: AccuweatherCountryDto
     @SerializedName("AdministrativeArea")
-    private lateinit var adminArea: AccuweatherAdminAreaDto
+    lateinit var adminArea: AccuweatherAdminAreaDto
     @SerializedName("GeoPosition")
-    private lateinit var geoPosition: AccuweatherGeoPositionDto
+    lateinit var geoPosition: AccuweatherGeoPositionDto
 
     override fun toString(): String {
         return "CITY (AccuWeather) - ($locationKey): $cityName" +
