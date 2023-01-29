@@ -13,6 +13,13 @@ object Storage : IStorageSolution {
         return dao?.readAll(ofClass) ?: noInit()
     }
 
+    override fun <T : JpaPersistable> read(ofClass: Class<T>,
+                                           hql: String,
+                                           params: Map<String, String>
+    ): List<T> {
+        return dao?.read(ofClass, hql, params) ?: noInit()
+    }
+
     override fun close() {
         dao?.close()
     }

@@ -17,11 +17,24 @@ object UI {
     fun ask(msg: String?): String = io?.ask(msg) ?: failUninitialized()
 
     fun askUntil(range: IntRange, firstMsg: String, retryMsg: String): Int {
-        fun validOrNull(intRange: IntRange, msg: String): Int? = ask(msg).toIntOrNull()?.takeIf { it in intRange }
+        return askUntilValid(firstMsg, retryMsg) { msg ->
+            ask(msg).toIntOrNull()?.takeIf { it in range }
+        }
+    }
 
-        var input = validOrNull(range, firstMsg)
+    fun askUntil(regex: Regex, firstMsg: String, retryMsg: String): String {
+        return askUntilValid(firstMsg, retryMsg) {msg ->
+            ask(msg).takeIf { it.matches(regex) }
+        }
+    }
+
+    private fun <T> askUntilValid(firstMsg: String,
+                              retryMsg: String,
+                              validator: (msg: String) -> T?
+    ): T {
+        var input: T? = validator(firstMsg)
         while (input == null) {
-            input = validOrNull(range, retryMsg)
+            input = validator(retryMsg)
         }
 
         return input

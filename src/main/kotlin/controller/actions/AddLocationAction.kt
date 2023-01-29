@@ -10,7 +10,10 @@ import external_api.service.AccuweatherRetrofitService
 import persistence.Storage
 import ui.Txt
 import ui.UI
+import ui.ask
 import ui.display
+
+private const val HQL_FIND_SIMILAR = "FROM Location L WHERE lower(L.address.city) = lower(:cityName)"
 
 class AddLocationAction : MenuAction() {
     override val command: Regex = arrayOf("/a", "/add").toCommand()
@@ -37,26 +40,39 @@ class AddLocationAction : MenuAction() {
         val city: ApiDTO = when (cities.size) {
             0 -> {
                 Txt.ADD_LOCATION_NOT_FOUND.display(query)
+                Txt.ADD_LOCATION_NOTHING_ADDED.display()
                 return true
             }
+
             1 -> cities.first()
             else -> multipleChoice(cities)
         }
 
         city as AccuweatherCityDTO
+
+        val existing = Storage.read(Location::class.java, HQL_FIND_SIMILAR, mapOf("cityName" to city.cityName))
+        if (existing.isNotEmpty()) {
+            existing.display()
+            if (!shouldAddToExisting(existing.size)) {
+                Txt.ADD_LOCATION_NOTHING_ADDED.display()
+                return true
+            }
+        }
+
         val location: Location = city.let { c ->
-            Location(query, c.geoPosition.latitude, c.geoPosition.longitude)
-                .apply { address = Address(
-                    c.region.name,
-                    c.country.name,
-                    "${c.adminArea.type} ${c.adminArea.name}",
-                    c.cityName,
-                    this) }
+            Location(query, c.locationKey, c.geoPosition.latitude, c.geoPosition.longitude)
+                .apply {
+                    address = Address(
+                        c.region.name,
+                        c.country.name,
+                        "${c.adminArea.type} ${c.adminArea.name}",
+                        c.cityName,
+                        this
+                    )
+                }
         }
         Storage.add(location)
 
-        // TODO: check if it exists first
-        // TODO: add location_key
         // TODO: split to functions
 
         Txt.LOCATION_ADDED_MSG.display(location.toString())
@@ -76,5 +92,13 @@ class AddLocationAction : MenuAction() {
             )
         }
         return cities[idAsShown - 1]
+    }
+
+    private fun shouldAddToExisting(numberOfExisting: Int): Boolean {
+        return UI.askUntil(
+            "[YyNn]".toRegex(),
+            Txt.ADD_LOCATION_ALREADY_EXISTS.getFormattedText(numberOfExisting),
+            Txt.ADD_LOCATION_ALREADY_EXISTS_ERROR.getFormattedText()
+        ).equals("y", ignoreCase = true)
     }
 }
