@@ -21,13 +21,18 @@ enum class Txt(private val propertyKey: String) {
     INVALID_COMMAND_ACTION("invalid_command"),
     NO_ARGUMENT_ERROR("no_argument_error"),
     INVALID_ID_ERROR("invalid_id_error"),
+    LOCATION_NOT_FOUND("location_not_found"),
+
+    DONE_MSG("delete_location"),
 
     ADD_COMMAND_PROPER_USAGE_INSTRUCTION("add_command_proper"),
-    ADD_LOCATION_NOT_FOUND("location_not_found"),
     ADD_MULTIPLE_LOCATIONS_FOUND("multiple_locations_found"),
     ADD_LOCATION_ALREADY_EXISTS("location_already_exists"),
     ADD_LOCATION_ALREADY_EXISTS_ERROR("location_already_exists_invalid"),
     ADD_LOCATION_NOTHING_ADDED("location_nothing_added"),
+
+    DELETE_COMMAND_PROPER_USAGE_INSTRUCTION("delete_command_proper"),
+    DELETE_MATCHES_FOUND("delete_matches_found"),
 
     END_PROGRAM_ACTION("end_program"),
     LOCATION_ADDED_MSG("add_location"),

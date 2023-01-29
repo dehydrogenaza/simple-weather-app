@@ -7,7 +7,7 @@ import javax.persistence.*
 abstract class JpaPersistable (uuid: UUID) {
     @Id
     @Column(name = "id", length = 36)
-    protected val uuid: String = uuid.toString()
+    val uuid: String = uuid.toString()
 
     @Version
     @Column(name = "version")

@@ -11,7 +11,7 @@ class ListSavedLocationsAction : MenuAction() {
     override fun perform(input: String): Boolean {
         Txt.DISPLAY_LOCATIONS_MSG.display()
 
-        Storage.readAll(Location::class.java).display()
+        Storage.readAll(Location::class.java).display(showHidden = true)
 
         return true
     }
