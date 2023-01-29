@@ -10,6 +10,9 @@ class Location(
     @Column(name = "description")
     val description: String,
 
+    @Column(name = "accuweatherLocationKey")
+    val accuweatherLocationKey: String,
+
     @Column(name = "latitude")
     val latitude: Double?,
 

@@ -1,13 +1,13 @@
 package persistence
 
 import authentication.Credentials
-import authentication.ICredentialsSource
 import domain.*
 import domain.weather.Forecast
 import exceptions.WeatherAppAuthenticationException
 import org.hibernate.Session
 import org.hibernate.cfg.Configuration
-import java.util.*
+import org.hibernate.query.Query
+import org.hibernate.type.StringType
 
 class HibernateStorage : IStorageSolution {
     companion object Config {
@@ -58,6 +58,32 @@ class HibernateStorage : IStorageSolution {
             val rows = try {
                 session.createQuery("from $tableName", ofClass)
                     ?.resultList
+            } catch (e: Exception) {
+                transaction.rollback()
+                throw e
+            }
+
+            return rows?.filterNotNull() ?: emptyList()
+        }
+    }
+
+    override fun <T : JpaPersistable> read(ofClass: Class<T>,
+                                           hql: String,
+                                           params: Map<String, String>
+    ): List<T> {
+        //val tableName = ofClass.simpleName
+
+        sessionFactory.currentSession.use { session: Session? ->
+            val transaction = session?.beginTransaction()
+                ?: error("Hibernate: failed to get a Session.")
+            val rows = try {
+                val query: Query<T> = session.createQuery(hql, ofClass).apply {
+                    params.forEach{ (name, value) ->
+                        setParameter(name, value, StringType.INSTANCE)
+                    }
+                }
+
+                query.resultList.also { transaction.commit() }
             } catch (e: Exception) {
                 transaction.rollback()
                 throw e

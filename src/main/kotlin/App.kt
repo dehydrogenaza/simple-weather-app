@@ -99,10 +99,10 @@ object App {
     }
 
     private fun addExampleDataToStorage() {
-        val testLocation1 = Location("test1", 20.3, 13.5)
-        val testLocation2 = Location("test2", -10.0, 0.0)
+        val testLocation1 = Location("test1", "a", 20.3, 13.5)
+        val testLocation2 = Location("test2","b", -10.0, 0.0)
             .apply { address = Address("region2", "country2", "area2", null, this) }
-        val testLocation3 = Location("test3", 0.0, 1000.0)
+        val testLocation3 = Location("test3","c", 0.0, 1000.0)
             .apply { address = Address("someRegion3", "someCountry3", "someArea3", "someCity3", this) }
 
         val testDate1 = ForecastDate(LocalDateTime.now(), LocalDateTime.now(), testLocation1)
