@@ -6,7 +6,16 @@ fun String.display() = UI.display(this) //shorthand for UI.display(msg)
 fun Txt.display(vararg formatArgs: Any) = UI.display(this.getFormattedText(*formatArgs))
 
 //fun List<IDisplayableList>.display() = UI.display(this.joinToString("\n"))
-fun List<IDisplayableList>.display() = UI.display(this.filter { !it.isHidden() }.joinToString("\n"))
+fun List<IDisplayableList>.display(showHidden: Boolean = false) =
+    UI.display((
+            if (showHidden)
+                this
+            else
+                this.filter { !it.isHidden() }
+            ).joinToString("\n")
+    )
+//    UI.display(this.filter { !it.isHidden() }.joinToString("\n"))
+
 fun String.ask() = UI.ask(this) //shorthand for UI.ask(msg)
 fun Txt.ask(vararg formatArgs: Any) = UI.ask(this.getFormattedText(*formatArgs))
 
@@ -23,14 +32,15 @@ object UI {
     }
 
     fun askUntil(regex: Regex, firstMsg: String, retryMsg: String): String {
-        return askUntilValid(firstMsg, retryMsg) {msg ->
+        return askUntilValid(firstMsg, retryMsg) { msg ->
             ask(msg).takeIf { it.matches(regex) }
         }
     }
 
-    private fun <T> askUntilValid(firstMsg: String,
-                              retryMsg: String,
-                              validator: (msg: String) -> T?
+    private fun <T> askUntilValid(
+        firstMsg: String,
+        retryMsg: String,
+        validator: (msg: String) -> T?
     ): T {
         var input: T? = validator(firstMsg)
         while (input == null) {

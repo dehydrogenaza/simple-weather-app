@@ -1,5 +1,8 @@
 package controller.actions
 
+import ui.Txt
+import ui.UI
+import ui.display
 import kotlin.text.StringBuilder
 
 const val ARGUMENT_COMMON_REGEX_STRING = " +\\S.*"
@@ -30,4 +33,33 @@ abstract class MenuAction {
             parameterBase + AFTER_PARAMETER_COMMON_REGEX_STRING
         }.toRegex()
     }
+}
+
+interface IMultiChoice {
+    fun extractArguments(input: String, properInstruction: Txt): String? {
+        val args: MatchResult? = ARGUMENT_COMMON_REGEX_STRING.toRegex().find(input)
+        return if (args == null) {
+            noArgs(properInstruction.getFormattedText())
+            null
+        } else {
+            args.value.trim()
+        }
+    }
+
+    fun displayIndexed(list: List<Any>) = list.forEachIndexed { idx, element ->
+        println("${idx + 1}.\n$element")
+    }
+
+    fun <T> chooseFromList(choices: List<T>, firstMsg: String, retryMsg: String, allowNone: Boolean = false): T? {
+        val maxIdAsShown = choices.size
+        val id = UI.askUntil(
+            IntRange(if (allowNone) 0 else 1, maxIdAsShown),
+            firstMsg,
+            retryMsg
+        )
+        return if (id == 0) null else choices[id - 1]
+    }
+
+    private fun noArgs(properInstruction: String) = Txt.NO_ARGUMENT_ERROR
+        .display(properInstruction)
 }

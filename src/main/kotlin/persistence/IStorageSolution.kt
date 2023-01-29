@@ -7,7 +7,13 @@ interface IStorageSolution {
     fun <T : JpaPersistable> readAll(ofClass: Class<T>): List<T>
     fun <T : JpaPersistable> read(ofClass: Class<T>,
                                   hql: String,
-                                  params: Map<String, String> = emptyMap()
+                                  hqlParams: Map<String, String> = emptyMap()
     ): List<T>
+
+    fun <T : JpaPersistable> delete(ofClass: Class<T>,
+                                    hql: String,
+                                    hqlParams: Map<String, String> = emptyMap(),
+                                    confirmationCallback: (List<T>) -> T?
+    ): Boolean
     fun close()
 }
