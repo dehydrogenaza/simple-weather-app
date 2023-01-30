@@ -1,5 +1,6 @@
-package controller.actions
+package controller.actions.basic
 
+import controller.actions.MenuAction
 import persistence.Storage
 import ui.Txt
 import ui.display

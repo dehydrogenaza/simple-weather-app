@@ -1,4 +1,6 @@
-package controller.actions
+package controller.actions.location
+
+import controller.actions.MenuAction
 
 class HideLocationsAction : MenuAction() {
     override val command: Regex = arrayOf("/h", "/hide").toCommand()

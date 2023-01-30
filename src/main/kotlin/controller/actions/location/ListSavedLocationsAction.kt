@@ -1,5 +1,6 @@
-package controller.actions
+package controller.actions.location
 
+import controller.actions.MenuAction
 import domain.Location
 import persistence.Storage
 import ui.Txt

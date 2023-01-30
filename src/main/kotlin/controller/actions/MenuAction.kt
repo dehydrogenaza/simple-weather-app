@@ -35,17 +35,24 @@ abstract class MenuAction {
     }
 }
 
-interface IMultiChoice {
-    fun extractArguments(input: String, properInstruction: Txt): String? {
+interface IHasArguments {
+    fun extractArguments(input: String, properInstruction: Txt? = null, mandatory: Boolean = true): String? {
         val args: MatchResult? = ARGUMENT_COMMON_REGEX_STRING.toRegex().find(input)
         return if (args == null) {
-            noArgs(properInstruction.getFormattedText())
+            if (properInstruction != null && mandatory) {
+                noArgs(properInstruction.getFormattedText())
+            }
             null
         } else {
             args.value.trim()
         }
     }
 
+    private fun noArgs(properInstruction: String) = Txt.NO_ARGUMENT_ERROR
+        .display(properInstruction)
+}
+
+interface IMultiChoice {
     fun displayIndexed(list: List<Any>) = list.forEachIndexed { idx, element ->
         println("${idx + 1}.\n$element")
     }
@@ -59,7 +66,4 @@ interface IMultiChoice {
         )
         return if (id == 0) null else choices[id - 1]
     }
-
-    private fun noArgs(properInstruction: String) = Txt.NO_ARGUMENT_ERROR
-        .display(properInstruction)
 }
