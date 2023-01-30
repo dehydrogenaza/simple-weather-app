@@ -1,6 +1,10 @@
 import authentication.Credentials
 import controller.Menu
-import controller.actions.*
+import controller.actions.basic.EmptyCommandAction
+import controller.actions.basic.EndProgramAction
+import controller.actions.basic.InvalidCommandAction
+import controller.actions.location.*
+import controller.actions.weather.ShowForecastAction
 import domain.*
 import domain.weather.*
 import external_api.HttpClient
@@ -41,6 +45,7 @@ object App {
         DeleteLocationsAction(),
         HideLocationsAction(),
         RevealLocationsAction(),
+        ShowForecastAction(),
         EndProgramAction()
     ).loop()
 

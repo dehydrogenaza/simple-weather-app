@@ -9,6 +9,7 @@ companion object Versions {
     const val retrofit = "2.9.0"
 //    const val okHttpLoggingInterceptor = "4.10.0"
     //const val gson = "2.10.1"
+    const val dateTime = "0.4.0"
 }
 
 plugins {
@@ -33,6 +34,8 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:${Versions.retrofit}")
     implementation("com.squareup.retrofit2:converter-gson:${Versions.retrofit}")
 //    implementation("com.squareup.okhttp3:logging-interceptor:${Versions.okHttpLoggingInterceptor}")
+    implementation("org.jetbrains.kotlinx:kotlinx-datetime:${Versions.dateTime}")
+
     testImplementation(kotlin("test"))
 }
 

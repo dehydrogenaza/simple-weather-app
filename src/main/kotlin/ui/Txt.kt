@@ -22,6 +22,7 @@ enum class Txt(private val propertyKey: String) {
     NO_ARGUMENT_ERROR("no_argument_error"),
     INVALID_ID_ERROR("invalid_id_error"),
     LOCATION_NOT_FOUND("location_not_found"),
+    DATE_PARSING_ERROR("date_parsing_error"),
 
     DONE_MSG("delete_location"),
 
@@ -33,6 +34,7 @@ enum class Txt(private val propertyKey: String) {
 
     DELETE_COMMAND_PROPER_USAGE_INSTRUCTION("delete_command_proper"),
     DELETE_MATCHES_FOUND("delete_matches_found"),
+    DELETED_NOTHING("deleted_nothing"),
 
     END_PROGRAM_ACTION("end_program"),
     LOCATION_ADDED_MSG("add_location"),

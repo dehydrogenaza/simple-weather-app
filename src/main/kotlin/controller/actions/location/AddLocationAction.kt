@@ -1,6 +1,9 @@
-package controller.actions
+package controller.actions.location
 
 import authentication.Credentials
+import controller.actions.IHasArguments
+import controller.actions.IMultiChoice
+import controller.actions.MenuAction
 import domain.Address
 import domain.Location
 import external_api.HttpClientManager
@@ -13,22 +16,22 @@ import ui.display
 
 private const val HQL_FIND_SIMILAR = "FROM Location L WHERE lower(L.address.city) = lower(:cityName)"
 
-class AddLocationAction : MenuAction(), IMultiChoice {
+class AddLocationAction : MenuAction(), IMultiChoice, IHasArguments {
     override val command: Regex = arrayOf("/a", "/add").toCommand()
 
     override fun perform(input: String): Boolean {
-        val query: String = extractArguments(input, Txt.ADD_COMMAND_PROPER_USAGE_INSTRUCTION)
+        val apiQuery: String = extractArguments(input, Txt.ADD_COMMAND_PROPER_USAGE_INSTRUCTION)
             ?: return true
 
-        val cities = findCitiesFromAccuweather(query)
+        val cities = findCitiesFromAccuweather(apiQuery)
         displayIndexed(cities)
 
-        val city = specifyCityFromList(query, cities) ?: return true
+        val city = specifyCityFromList(apiQuery, cities) ?: return true
 
         if (rejectIfAlreadyExists(city.cityName)) return true
 
         val location: Location = city.let { c ->
-            Location(query, c.locationKey, c.geoPosition.latitude, c.geoPosition.longitude)
+            Location(apiQuery, c.locationKey, c.geoPosition.latitude, c.geoPosition.longitude)
                 .apply {
                     address = Address(
                         c.region.name,
