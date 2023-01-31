@@ -48,7 +48,7 @@ class AccuweatherForecastDTO : ApiDTO {
 
         inner class DayNightDto(
             @SerializedName("PrecipitationChance")
-            val precipitationChance: Int
+            val precipitationChance: Double
         ) {
             @SerializedName("LongPhrase")
             lateinit var description: String
@@ -73,7 +73,7 @@ class AccuweatherForecastDTO : ApiDTO {
                 lateinit var direction: WindDirectionDto
                 inner class WindSpeedDto(
                     @SerializedName("Value")
-                    val kmh: Int
+                    val kmh: Double
                 )
 
                 inner class WindDirectionDto(
