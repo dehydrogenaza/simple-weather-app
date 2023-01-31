@@ -1,0 +1,276 @@
+{
+  "Headline": {
+    "EffectiveDate": "2023-01-31T13:00:00+01:00",
+    "EffectiveEpochDate": 1675166400,
+    "Severity": 3,
+    "Text": "Mixed rain and snow Tuesday afternoon to late Tuesday night",
+    "Category": "snow/rain",
+    "EndDate": "2023-02-01T07:00:00+01:00",
+    "EndEpochDate": 1675231200,
+    "MobileLink": "http://www.accuweather.com/en/pl/jarocin/266399/daily-weather-forecast/266399?unit=c&lang=en-us",
+    "Link": "http://www.accuweather.com/en/pl/jarocin/266399/daily-weather-forecast/266399?unit=c&lang=en-us"
+  },
+  "DailyForecasts": [
+    {
+      "Date": "2023-01-30T07:00:00+01:00",
+      "EpochDate": 1675058400,
+      "Sun": {
+        "Rise": "2023-01-30T07:34:00+01:00",
+        "EpochRise": 1675060440,
+        "Set": "2023-01-30T16:34:00+01:00",
+        "EpochSet": 1675092840
+      },
+      "Moon": {
+        "Rise": "2023-01-30T11:01:00+01:00",
+        "EpochRise": 1675072860,
+        "Set": "2023-01-31T03:59:00+01:00",
+        "EpochSet": 1675133940,
+        "Phase": "WaxingGibbous",
+        "Age": 9
+      },
+      "Temperature": {
+        "Minimum": {
+          "Value": -0.2,
+          "Unit": "C",
+          "UnitType": 17
+        },
+        "Maximum": {
+          "Value": 3.4,
+          "Unit": "C",
+          "UnitType": 17
+        }
+      },
+      "RealFeelTemperature": {
+        "Minimum": {
+          "Value": -8,
+          "Unit": "C",
+          "UnitType": 17,
+          "Phrase": "Very Cold"
+        },
+        "Maximum": {
+          "Value": -3.7,
+          "Unit": "C",
+          "UnitType": 17,
+          "Phrase": "Very Cold"
+        }
+      },
+      "RealFeelTemperatureShade": {
+        "Minimum": {
+          "Value": -8,
+          "Unit": "C",
+          "UnitType": 17,
+          "Phrase": "Very Cold"
+        },
+        "Maximum": {
+          "Value": -3.7,
+          "Unit": "C",
+          "UnitType": 17,
+          "Phrase": "Very Cold"
+        }
+      },
+      "HoursOfSun": 1.1,
+      "DegreeDaySummary": {
+        "Heating": {
+          "Value": 16,
+          "Unit": "C",
+          "UnitType": 17
+        },
+        "Cooling": {
+          "Value": 0,
+          "Unit": "C",
+          "UnitType": 17
+        }
+      },
+      "AirAndPollen": [
+        {
+          "Name": "AirQuality",
+          "Value": 0,
+          "Category": "Good",
+          "CategoryValue": 1,
+          "Type": "Ozone"
+        },
+        {
+          "Name": "Grass",
+          "Value": 0,
+          "Category": "Low",
+          "CategoryValue": 1
+        },
+        {
+          "Name": "Mold",
+          "Value": 0,
+          "Category": "Low",
+          "CategoryValue": 1
+        },
+        {
+          "Name": "Ragweed",
+          "Value": 0,
+          "Category": "Low",
+          "CategoryValue": 1
+        },
+        {
+          "Name": "Tree",
+          "Value": 0,
+          "Category": "Low",
+          "CategoryValue": 1
+        },
+        {
+          "Name": "UVIndex",
+          "Value": 0,
+          "Category": "Low",
+          "CategoryValue": 1
+        }
+      ],
+      "Day": {
+        "Icon": 29,
+        "IconPhrase": "Rain and snow",
+        "HasPrecipitation": true,
+        "PrecipitationType": "Mixed",
+        "PrecipitationIntensity": "Light",
+        "ShortPhrase": "A rain or snow shower",
+        "LongPhrase": "Cloudy with a rain or snow shower in spots; winds gradually subsiding",
+        "PrecipitationProbability": 81,
+        "ThunderstormProbability": 15,
+        "RainProbability": 80,
+        "SnowProbability": 80,
+        "IceProbability": 1,
+        "Wind": {
+          "Speed": {
+            "Value": 25.9,
+            "Unit": "km/h",
+            "UnitType": 7
+          },
+          "Direction": {
+            "Degrees": 259,
+            "Localized": "W",
+            "English": "W"
+          }
+        },
+        "WindGust": {
+          "Speed": {
+            "Value": 50,
+            "Unit": "km/h",
+            "UnitType": 7
+          },
+          "Direction": {
+            "Degrees": 256,
+            "Localized": "WSW",
+            "English": "WSW"
+          }
+        },
+        "TotalLiquid": {
+          "Value": 2.2,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "Rain": {
+          "Value": 1,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "Snow": {
+          "Value": 1.07,
+          "Unit": "cm",
+          "UnitType": 4
+        },
+        "Ice": {
+          "Value": 0,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "HoursOfPrecipitation": 3,
+        "HoursOfRain": 1,
+        "HoursOfSnow": 3,
+        "HoursOfIce": 0,
+        "CloudCover": 98,
+        "Evapotranspiration": {
+          "Value": 0.3,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "SolarIrradiance": {
+          "Value": 1007.4,
+          "Unit": "W/m²",
+          "UnitType": 33
+        }
+      },
+      "Night": {
+        "Icon": 19,
+        "IconPhrase": "Flurries",
+        "HasPrecipitation": true,
+        "PrecipitationType": "Snow",
+        "PrecipitationIntensity": "Light",
+        "ShortPhrase": "A bit of snow this evening",
+        "LongPhrase": "A bit of evening snow with little or no accumulation; otherwise, mostly cloudy with winds gradually subsiding",
+        "PrecipitationProbability": 55,
+        "ThunderstormProbability": 3,
+        "RainProbability": 47,
+        "SnowProbability": 47,
+        "IceProbability": 0,
+        "Wind": {
+          "Speed": {
+            "Value": 29.6,
+            "Unit": "km/h",
+            "UnitType": 7
+          },
+          "Direction": {
+            "Degrees": 284,
+            "Localized": "WNW",
+            "English": "WNW"
+          }
+        },
+        "WindGust": {
+          "Speed": {
+            "Value": 72.2,
+            "Unit": "km/h",
+            "UnitType": 7
+          },
+          "Direction": {
+            "Degrees": 285,
+            "Localized": "WNW",
+            "English": "WNW"
+          }
+        },
+        "TotalLiquid": {
+          "Value": 0.2,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "Rain": {
+          "Value": 0,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "Snow": {
+          "Value": 0.08,
+          "Unit": "cm",
+          "UnitType": 4
+        },
+        "Ice": {
+          "Value": 0,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "HoursOfPrecipitation": 1,
+        "HoursOfRain": 0,
+        "HoursOfSnow": 1,
+        "HoursOfIce": 0,
+        "CloudCover": 83,
+        "Evapotranspiration": {
+          "Value": 0.3,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "SolarIrradiance": {
+          "Value": 0,
+          "Unit": "W/m²",
+          "UnitType": 33
+        }
+      },
+      "Sources": [
+        "AccuWeather"
+      ],
+      "MobileLink": "http://www.accuweather.com/en/pl/jarocin/266399/daily-weather-forecast/266399?day=1&unit=c&lang=en-us",
+      "Link": "http://www.accuweather.com/en/pl/jarocin/266399/daily-weather-forecast/266399?day=1&unit=c&lang=en-us"
+    }
+  ]
+}
