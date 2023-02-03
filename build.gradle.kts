@@ -43,6 +43,14 @@ tasks.test {
     useJUnitPlatform()
 }
 
+//tasks.withType<JavaCompile>().configureEach {
+//    options.encoding = "UTF-8"
+//}
+//
+//tasks.withType<Javadoc>().configureEach {
+//    options.encoding = "UTF-8"
+//}
+
 tasks.withType<KotlinCompile> {
     compilerOptions.apiVersion.set(Versions.kotlin)
     compilerOptions.languageVersion.set(Versions.kotlin)
