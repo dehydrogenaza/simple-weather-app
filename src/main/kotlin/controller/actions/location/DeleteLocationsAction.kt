@@ -3,7 +3,7 @@ package controller.actions.location
 import controller.actions.IHasArguments
 import controller.actions.IMultiChoice
 import controller.actions.MenuAction
-import domain.Location
+import domain.location.Location
 import persistence.Storage
 import ui.Txt
 import ui.display

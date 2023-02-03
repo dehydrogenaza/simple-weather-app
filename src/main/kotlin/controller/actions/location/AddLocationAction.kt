@@ -4,10 +4,10 @@ import authentication.Credentials
 import controller.actions.IHasArguments
 import controller.actions.IMultiChoice
 import controller.actions.MenuAction
-import domain.Address
-import domain.Location
+import domain.location.Address
+import domain.location.Location
 import external_api.HttpClientManager
-import external_api.dtos.AccuweatherCityDTO
+import external_api.dto.AccuweatherCityDTO
 import external_api.service.AccuweatherRetrofitService
 import persistence.Storage
 import ui.Txt

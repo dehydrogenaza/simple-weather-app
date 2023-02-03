@@ -1,4 +1,4 @@
-package external_api.dtos
+package external_api.dto
 
 import com.google.gson.annotations.SerializedName
 
