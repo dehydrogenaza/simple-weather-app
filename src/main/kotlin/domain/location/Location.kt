@@ -1,5 +1,8 @@
-package domain
+package domain.location
 
+import domain.DbTableNames
+import domain.JpaPersistable
+import domain.weather.ForecastDate
 import ui.IDisplayableList
 import java.util.UUID
 import javax.persistence.*

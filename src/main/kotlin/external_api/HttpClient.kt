@@ -1,9 +1,8 @@
 package external_api
 
 import authentication.ICredentialsSource
-import domain.Location
-import exceptions.WeatherAppAuthenticationException
-import external_api.dtos.ApiDTO
+import authentication.WeatherAppAuthenticationException
+import external_api.dto.ApiDTO
 import external_api.service.*
 
 class HttpClient(services: Set<RetrofitService>, credentials: ICredentialsSource) {

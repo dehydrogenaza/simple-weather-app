@@ -1,7 +1,5 @@
 package ui
 
-import exceptions.WeatherAppUIException
-
 fun String.display() = UI.display(this) //shorthand for UI.display(msg)
 fun Txt.display(vararg formatArgs: Any) = UI.display(this.getFormattedText(*formatArgs))
 

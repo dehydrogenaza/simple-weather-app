@@ -1,6 +1,8 @@
-package domain
+package domain.weather
 
-import domain.weather.Forecast
+import domain.DbTableNames
+import domain.JpaPersistable
+import domain.location.Location
 import java.time.LocalDateTime
 import java.util.*
 import javax.persistence.*

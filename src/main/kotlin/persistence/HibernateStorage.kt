@@ -2,8 +2,11 @@ package persistence
 
 import authentication.Credentials
 import domain.*
+import domain.location.Address
+import domain.location.Location
 import domain.weather.Forecast
-import exceptions.WeatherAppAuthenticationException
+import domain.weather.ForecastDate
+import authentication.WeatherAppAuthenticationException
 import org.hibernate.Session
 import org.hibernate.cfg.Configuration
 import org.hibernate.query.Query

@@ -1,5 +1,7 @@
-package domain
+package domain.location
 
+import domain.DbTableNames
+import domain.JpaPersistable
 import java.util.*
 import javax.persistence.*
 

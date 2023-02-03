@@ -5,7 +5,8 @@ import controller.actions.basic.EndProgramAction
 import controller.actions.basic.InvalidCommandAction
 import controller.actions.location.*
 import controller.actions.weather.ShowForecastAction
-import domain.*
+import domain.location.Address
+import domain.location.Location
 import domain.weather.*
 import external_api.HttpClient
 import external_api.service.*

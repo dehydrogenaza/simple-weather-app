@@ -1,7 +1,6 @@
 package domain.weather
 
 import domain.DbTableNames
-import domain.ForecastDate
 import domain.JpaPersistable
 import java.util.*
 import javax.persistence.*
